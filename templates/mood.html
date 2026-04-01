@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mood Dashboard</title>
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #ffffff;
+            color: #000000;
+            text-align: center;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        h2 {
+            margin-top: 24px;
+            color: #000000;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 18px auto;
+            width: fit-content;
+        }
+
+        .nav-button {
+            background: #000000;
+            color: #ffffff;
+            padding: 10px 16px;
+            border: 2px solid #000000;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .chart-container {
+            width: 70%;
+            margin: auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid #000000;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+    </style>
+</head>
+<body>
+
+<h2>📊 Mood Tracking Dashboard</h2>
+
+<div class="top-bar">
+    <a class="nav-button" href="/">← Back to Chat</a>
+    <button class="nav-button" onclick="location.reload()">🔄 Refresh Data</button>
+</div>
+
+<div class="chart-container">
+    <canvas id="moodChart"></canvas>
+</div>
+
+<script>
+fetch("/mood")
+.then(response => response.json())
+.then(data => {
+
+    const ctx = document.getElementById("moodChart").getContext("2d");
+
+    new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: ["😊 Happy", "😢 Sad", "😠 Angry", "😐 Neutral"],
+            datasets: [{
+                label: "Mood Count",
+                data: [
+                    data.happy,
+                    data.sad,
+                    data.angry,
+                    data.neutral
+                ],
+                backgroundColor: [
+                    "#00c896",
+                    "#3498db",
+                    "#e74c3c",
+                    "#95a5a6"
+                ]
+            }]
+        },
+        
+        options: {
+    responsive: true,
+    plugins: {
+        legend: {
+            labels: {
+                color: "#000000",
+                font: { size: 14 }
+            }
+        }
+    },
+    scales: {
+        y: {
+            beginAtZero: true,
+            ticks: { color: "#000000" },
+            grid: { color: "rgba(0,0,0,0.1)" }
+        },
+        x: {
+            ticks: { color: "#000000" },
+            grid: { color: "rgba(0,0,0,0.1)" }
+        }
+    }
+}
+    });
+
+})
+.catch(error => {
+    console.error("Error loading mood data:", error);
+});
+</script>
+
+</body>
+</html>
