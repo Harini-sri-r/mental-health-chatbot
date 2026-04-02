@@ -1,52 +1,73 @@
-# Mental Health Assistant Chatbot
+# 🧠 AI Mental Health Assistant Chatbot
 
-This project is a conversational web application designed to support users by understanding their emotional state and responding in a helpful and empathetic way.
-Unlike basic rule-based chatbots, this system combines natural language processing with real-time interaction to simulate meaningful conversations.
-
----
-
-## Key Features
-
-* AI-powered chatbot for natural conversations
-* Emotion detection from user input
-* Crisis detection with immediate support responses
-* Chat history stored using a database
-* Mood tracking dashboard to visualize emotional trends
+An intelligent web-based chatbot designed to provide emotional support through meaningful conversations.
+This system goes beyond basic scripted responses by analyzing user input, detecting emotions, and responding with context-aware and empathetic replies.
 
 ---
 
-## Technologies Used
+## ✨ Features
 
-* Python (Flask) for backend development
-* Hugging Face Transformers for NLP models
-* HTML, CSS, JavaScript for frontend
-* SQLite for data storage
-* Chart.js for data visualization
-
----
-
-## How It Works
-
-1. The user sends a message through the chat interface
-2. The system analyzes the message to detect emotion
-3. If critical phrases are detected, a safety response is triggered
-4. Otherwise, the AI model generates a contextual reply
-5. The interaction is stored and later used for mood analysis
+* 🤖 **Conversational AI** for interactive and natural communication
+* 😊 **Emotion Detection** to understand user feelings in real time
+* 🚨 **Crisis Awareness** to identify sensitive or harmful inputs and respond safely
+* 💾 **Chat History Storage** for tracking past interactions
+* 📊 **Mood Dashboard** to visualize emotional patterns over time
 
 ---
 
-## Dashboard
+## 🛠️ Tech Stack
 
-The dashboard provides a visual summary of user emotions over time, helping identify patterns such as frequent sadness or stress.
+* **Backend:** Python, Flask
+* **Frontend:** HTML, CSS, JavaScript
+* **NLP Models:** Hugging Face Transformers
+* **Database:** SQLite
+* **Visualization:** Chart.js
 
 ---
 
-## Run the Project
+## ⚙️ System Workflow
+
+1. User enters a message through the chat interface
+2. The system processes the input using NLP techniques
+3. Emotion and intent are identified
+4. * If critical content is detected → a safety-focused response is triggered
+   * Otherwise → the chatbot generates a relevant reply
+5. The conversation is stored for future insights and analysis
+
+---
+
+## 📈 Mood Dashboard
+
+The dashboard presents a graphical view of emotional trends based on user interactions.
+It helps in identifying patterns such as frequent stress, sadness, or positive moods over time.
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/Harini-sri-r/mental-health-chatbot.git
+cd mental-health-chatbot
+```
+
+### 2. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
+```
+
+### 3. Run the Application
+
+```bash
 python app.py
 ```
 
-Then open:
+### 4. Open in Browser
+
+```
 http://127.0.0.1:5000
+```
+
+⭐ If you found this project useful, consider giving it a star!
