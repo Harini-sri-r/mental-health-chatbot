@@ -313,10 +313,6 @@ def mood():
         print("Dashboard error:", e)
         return jsonify({"happy": 0, "sad": 0, "angry": 0, "anxiety": 0, "neutral": 0})
 
-@app.route("/dashboard")
-def dashboard():
-    return render_template("mood.html")
-
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
