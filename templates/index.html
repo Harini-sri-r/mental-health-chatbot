@@ -1,21 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Chatbot</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asha | Mental Wellness Companion</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-<div class="chat-container">
-    <div class="top-bar">
-        <div class="chat-header">🧠 Mental Health Assistant</div>
-    </div>
-    <div id="chat-box" class="chat-box"></div>
-    <div class="chat-input">
-        <input id="message" placeholder="Type a message..." />
-        <button id="send-button" onclick="sendMessage()">➤</button>
-    </div>
-    <div class="dashboard-footer">
-        <a class="dashboard-button" href="/dashboard">📊 Mood Dashboard</a>
+<div class="page-shell">
+    <div class="hero-glow"></div>
+    <div class="chat-card">
+        <header class="card-header">
+            <div class="bot-profile">
+                <div class="bot-avatar">🤖</div>
+                <div>
+                    <h1>Asha</h1>
+                    <p>Gentle support for how you feel right now.</p>
+                </div>
+            </div>
+            <a class="dashboard-button" href="/dashboard">Mood Dashboard</a>
+        </header>
+
+        <section id="chat-box" class="chat-box">
+            <div class="message bot-message">
+                <div class="bubble">
+                    <p>Hi, I'm Asha. 🌿 I'm here to listen. How are you feeling today?</p>
+                </div>
+            </div>
+            <div class="message user-message">
+                <div class="bubble">
+                    <p>I feel a little worried and tired.</p>
+                </div>
+            </div>
+            <div class="message bot-message">
+                <div class="bubble">
+                    <p>That sounds heavy. Let's take a soft breath together and talk through it.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="chat-actions">
+            <button id="mic-button" class="icon-btn" type="button" title="Voice input">🎤</button>
+            <button id="emoji-button" class="icon-btn" type="button" title="Add emoji">😊</button>
+            <input id="message" type="text" placeholder="Tell me how you’re feeling…" autocomplete="off">
+            <button id="send-button" class="send-btn" type="button">Send</button>
+        </div>
+        <div id="emoji-picker" class="emoji-picker hidden">
+            <button type="button">🙂</button>
+            <button type="button">😌</button>
+            <button type="button">🤍</button>
+            <button type="button">🌿</button>
+            <button type="button">💬</button>
+        </div>
     </div>
 </div>
 

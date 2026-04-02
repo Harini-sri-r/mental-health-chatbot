@@ -1,21 +1,68 @@
+const chatBox = document.getElementById("chat-box");
+const messageInput = document.getElementById("message");
+const sendButton = document.getElementById("send-button");
+const emojiButton = document.getElementById("emoji-button");
+const micButton = document.getElementById("mic-button");
+const emojiPicker = document.getElementById("emoji-picker");
+
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+const recognition = SpeechRecognition ? new SpeechRecognition() : null;
+
+if (recognition) {
+    recognition.interimResults = false;
+    recognition.onstart = () => {
+        micButton.textContent = "🎙️";
+        micButton.title = "Listening...";
+    };
+    recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        messageInput.value = transcript;
+    };
+    recognition.onend = () => {
+        micButton.textContent = "🎤";
+        micButton.title = "Voice input";
+    };
+}
+
+micButton.addEventListener("click", () => {
+    if (!recognition) return;
+    recognition.start();
+});
+
+emojiButton.addEventListener("click", () => {
+    emojiPicker.classList.toggle("hidden");
+});
+
+emojiPicker.addEventListener("click", (event) => {
+    if (event.target.tagName !== "BUTTON") return;
+    messageInput.value += event.target.textContent;
+    messageInput.focus();
+});
+
 function addMessage(text, sender, isTyping = false) {
-    const box = document.getElementById("chat-box");
     const msg = document.createElement("div");
     msg.classList.add("message", sender + "-message");
-    if (isTyping) msg.classList.add("typing");
-    msg.innerText = text;
-    box.appendChild(msg);
-    box.scrollTop = box.scrollHeight;
+
+    const bubble = document.createElement("div");
+    bubble.className = "bubble";
+    bubble.textContent = text;
+    if (isTyping) bubble.classList.add("typing");
+
+    msg.appendChild(bubble);
+    chatBox.appendChild(msg);
+    chatBox.scrollTop = chatBox.scrollHeight;
+    return msg;
 }
 
 function sendMessage() {
-    const input = document.getElementById("message");
-    const text = input.value.trim();
+    const text = messageInput.value.trim();
     if (!text) return;
 
     addMessage(text, "user");
-    input.value = "";
-    const typingMessage = addMessage("Typing...", "bot", true);
+    messageInput.value = "";
+    emojiPicker.classList.add("hidden");
+
+    const typing = addMessage("Asha is typing...", "bot", true);
 
     fetch("/chat", {
         method: "POST",
@@ -24,19 +71,14 @@ function sendMessage() {
     })
     .then(res => res.json())
     .then(data => {
-        const typing = document.querySelector(".bot-message.typing");
-        if (typing) typing.remove();
+        typing.remove();
         addMessage(data.response, "bot");
     })
     .catch(() => {
-        const typing = document.querySelector(".bot-message.typing");
-        if (typing) typing.remove();
-        addMessage("Error ❌ Please try again.", "bot");
+        typing.remove();
+        addMessage("Sorry, something went wrong. Please try again.", "bot");
     });
 }
-
-const messageInput = document.getElementById("message");
-const sendButton = document.getElementById("send-button");
 
 sendButton.addEventListener("click", sendMessage);
 messageInput.addEventListener("keypress", function(e) {
@@ -44,7 +86,6 @@ messageInput.addEventListener("keypress", function(e) {
 });
 
 window.onload = function() {
-    addMessage("Hi 👋 I'm your assistant. How are you feeling today?", "bot");
     messageInput.focus();
 };
 
