@@ -1,4 +1,8 @@
-flask==3.0.0
+flask
+gunicorn
 transformers==4.36.2
-torch
 tokenizers==0.13.3
+torch
+scikit-learn
+numpy
+pandas
