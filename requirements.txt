@@ -1,7 +1,6 @@
 flask
 gunicorn
-transformers==4.36.2
-tokenizers==0.13.3
+transformers
 torch
 scikit-learn
 numpy
