@@ -3,56 +3,399 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asha | Mental Wellness Companion</title>
+    <title>MindEase AI | AI-Powered Mental Health Chatbot & Wellness Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-<div class="page-shell">
-    <div class="hero-glow"></div>
-    <div class="chat-card">
-        <header class="card-header">
-            <div class="bot-profile">
-                <div class="bot-avatar">🤖</div>
-                <div>
-                    <h1>Asha</h1>
-                    <p>Gentle support for how you feel right now.</p>
-                </div>
-            </div>
-            <a class="dashboard-button" href="/dashboard">Mood Dashboard</a>
-        </header>
+<div class="app-shell">
+    <header class="topbar">
+        <a class="brand-lockup" href="#hero" aria-label="MindEase AI home">
+            <span class="brand-mark" aria-hidden="true">ME</span>
+            <span>
+                <strong>MindEase AI</strong>
+                <small>Wellness intelligence dashboard</small>
+            </span>
+        </a>
+        <nav class="topnav" aria-label="Primary">
+            <a href="#chat">Chatbot</a>
+            <a href="#analytics">Analytics</a>
+            <a href="#mood">Mood</a>
+            <a href="#resources">Resources</a>
+            <a href="#support">Support</a>
+        </nav>
+        <a class="nav-action" href="/dashboard">
+            <span aria-hidden="true">&#8599;</span>
+            <span>Mood View</span>
+        </a>
+    </header>
 
-        <section id="chat-box" class="chat-box">
-            <div class="message bot-message">
-                <div class="bubble">
-                    <p>Hi, I'm Asha. 🌿 I'm here to listen. How are you feeling today?</p>
+    <main class="page-stack">
+        <section id="hero" class="hero-section section-card">
+            <div class="hero-copy">
+                <span class="eyebrow">AI wellness platform</span>
+                <h1>MindEase AI</h1>
+                <p class="hero-subtitle">AI-Powered Mental Health Chatbot &amp; Wellness Hub</p>
+                <p class="hero-description">A clean, portfolio-ready dashboard for emotional support, mood tracking, personal journaling, knowledge retrieval, voice interaction, and wellness recommendations.</p>
+                <div class="hero-actions">
+                    <a class="primary-action" href="#chat">
+                        <span aria-hidden="true">&#128172;</span>
+                        <span>Start Check-In</span>
+                    </a>
+                    <a class="secondary-action" href="#wellness">
+                        <span aria-hidden="true">&#10022;</span>
+                        <span>Explore Wellness</span>
+                    </a>
                 </div>
             </div>
-            <div class="message user-message">
-                <div class="bubble">
-                    <p>I feel a little worried and tired.</p>
-                </div>
-            </div>
-            <div class="message bot-message">
-                <div class="bubble">
-                    <p>That sounds heavy. Let's take a soft breath together and talk through it.</p>
-                </div>
-            </div>
+            <figure class="hero-visual" aria-label="MindEase AI dashboard preview">
+                <img src="/static/mindease-ai-white-hero.png" alt="Bright AI wellness assistant dashboard illustration">
+                <figcaption>
+                    <span>Live sentiment</span>
+                    <strong id="hero-sentiment">Calm trend stable</strong>
+                </figcaption>
+            </figure>
         </section>
 
-        <div class="chat-actions">
-            <button id="mic-button" class="icon-btn" type="button" title="Voice input">🎤</button>
-            <button id="emoji-button" class="icon-btn" type="button" title="Add emoji">😊</button>
-            <input id="message" type="text" placeholder="Tell me how you’re feeling…" autocomplete="off">
-            <button id="send-button" class="send-btn" type="button">Send</button>
-        </div>
-        <div id="emoji-picker" class="emoji-picker hidden">
-            <button type="button">🙂</button>
-            <button type="button">😌</button>
-            <button type="button">🤍</button>
-            <button type="button">🌿</button>
-            <button type="button">💬</button>
-        </div>
-    </div>
+        <section class="metrics-grid" aria-label="Key metrics">
+            <article class="metric-card">
+                <span class="metric-icon" aria-hidden="true">&#9889;</span>
+                <strong>Active</strong>
+                <p>Support</p>
+                <small>24/7 companion access</small>
+            </article>
+            <article class="metric-card">
+                <span class="metric-icon" aria-hidden="true">&#128202;</span>
+                <strong>5-Class</strong>
+                <p>Emotion Detection</p>
+                <small>Happy, sad, stress, anxiety, calm</small>
+            </article>
+            <article class="metric-card">
+                <span class="metric-icon" aria-hidden="true">&#128269;</span>
+                <strong>RAG</strong>
+                <p>Knowledge Base</p>
+                <small>Evidence-aware resource retrieval</small>
+            </article>
+            <article class="metric-card">
+                <span class="metric-icon" aria-hidden="true">&#127908;</span>
+                <strong>Voice</strong>
+                <p>Assistant</p>
+                <small>Speech-to-text interaction</small>
+            </article>
+        </section>
+
+        <section class="dashboard-row two-column">
+            <article id="chat" class="panel chat-panel">
+                <div class="panel-header">
+                    <div>
+                        <span class="eyebrow">AI chatbot section</span>
+                        <h2>Aura Mental Wellness Chat</h2>
+                    </div>
+                    <span id="emotion-status" class="status-pill">Neutral</span>
+                </div>
+
+                <div id="chat-box" class="chat-box" aria-live="polite">
+                    <div class="message bot-message">
+                        <div class="avatar-dot" aria-hidden="true">AI</div>
+                        <div class="bubble">
+                            <p>{{ greeting }}</p>
+                        </div>
+                    </div>
+                    <div class="message user-message demo-message">
+                        <div class="bubble">
+                            <p>I feel overwhelmed before my exams.</p>
+                        </div>
+                    </div>
+                    <div class="message bot-message demo-message">
+                        <div class="avatar-dot" aria-hidden="true">AI</div>
+                        <div class="bubble">
+                            <p>That pressure can feel intense. Let us slow it down and choose one small next step.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-actions">
+                    <button id="mic-button" class="icon-button" type="button" title="Voice input" aria-label="Voice input">
+                        <span aria-hidden="true">&#127908;</span>
+                    </button>
+                    <button id="emoji-button" class="icon-button" type="button" title="Add emotion" aria-label="Add emotion">
+                        <span aria-hidden="true">&#128578;</span>
+                    </button>
+                    <label class="sr-only" for="message">Message</label>
+                    <input id="message" type="text" placeholder="Tell Aura how you feel..." autocomplete="off">
+                    <button id="send-button" class="send-button" type="button">
+                        <span>Send</span>
+                        <span aria-hidden="true">&#8594;</span>
+                    </button>
+                </div>
+                <div id="emoji-picker" class="emoji-picker hidden" aria-label="Emotion shortcuts">
+                    <button type="button" title="Happy">&#128578;</button>
+                    <button type="button" title="Calm">&#128524;</button>
+                    <button type="button" title="Supported">&#129782;</button>
+                    <button type="button" title="Nature">&#127807;</button>
+                    <button type="button" title="Talk">&#128172;</button>
+                </div>
+            </article>
+
+            <article id="analytics" class="panel emotion-panel">
+                <div class="panel-header">
+                    <div>
+                        <span class="eyebrow">Real-time emotion analytics</span>
+                        <h2>Sentiment Overview</h2>
+                    </div>
+                    <span class="status-pill active">Live</span>
+                </div>
+                <div class="emotion-grid">
+                    <div class="emotion-card" data-emotion-card="happy">
+                        <span class="emotion-icon">&#128522;</span>
+                        <span>Happy</span>
+                        <strong>24%</strong>
+                    </div>
+                    <div class="emotion-card" data-emotion-card="sad">
+                        <span class="emotion-icon">&#128532;</span>
+                        <span>Sad</span>
+                        <strong>18%</strong>
+                    </div>
+                    <div class="emotion-card" data-emotion-card="stress">
+                        <span class="emotion-icon">&#128168;</span>
+                        <span>Stress</span>
+                        <strong>16%</strong>
+                    </div>
+                    <div class="emotion-card" data-emotion-card="anxiety">
+                        <span class="emotion-icon">&#128565;</span>
+                        <span>Anxiety</span>
+                        <strong>28%</strong>
+                    </div>
+                    <div class="emotion-card" data-emotion-card="calm">
+                        <span class="emotion-icon">&#128524;</span>
+                        <span>Calm</span>
+                        <strong>14%</strong>
+                    </div>
+                </div>
+                <div class="sentiment-visual">
+                    <div class="sentiment-meter">
+                        <span style="--score: 68%"></span>
+                    </div>
+                    <canvas id="sentiment-canvas" width="720" height="230" aria-label="Interactive emotion analytics chart"></canvas>
+                </div>
+            </article>
+        </section>
+
+        <section id="mood" class="dashboard-row two-column">
+            <article class="panel mood-panel">
+                <div class="panel-header">
+                    <div>
+                        <span class="eyebrow">Mood tracking dashboard</span>
+                        <h2>Weekly &amp; Monthly Mood Trends</h2>
+                    </div>
+                    <div class="segmented-control" aria-label="Mood range">
+                        <button class="active" type="button">Week</button>
+                        <button type="button">Month</button>
+                    </div>
+                </div>
+                <canvas id="mood-trend" width="720" height="280" aria-label="Weekly mood chart"></canvas>
+                <div class="mood-log" aria-label="Daily mood logging">
+                    <button class="mood-chip active" type="button" data-mood="calm">&#128524; Calm</button>
+                    <button class="mood-chip" type="button" data-mood="happy">&#128522; Happy</button>
+                    <button class="mood-chip" type="button" data-mood="sad">&#128532; Sad</button>
+                    <button class="mood-chip" type="button" data-mood="anxious">&#128565; Anxious</button>
+                </div>
+                <div class="analysis-note">
+                    <strong>Mood trend analysis</strong>
+                    <p>Recent entries suggest a balanced emotional baseline with room for daily self-care consistency.</p>
+                </div>
+            </article>
+
+            <article id="journal" class="panel journal-panel">
+                <div class="panel-header">
+                    <div>
+                        <span class="eyebrow">Personal journal</span>
+                        <h2>Reflection Workspace</h2>
+                    </div>
+                    <span class="lock-chip">&#128274; Private</span>
+                </div>
+                <label class="sr-only" for="journal-entry">Journal entry</label>
+                <textarea id="journal-entry" rows="8" placeholder="Write a private reflection about your day, feelings, or thoughts..."></textarea>
+                <div class="journal-footer">
+                    <button id="summarize-journal" class="secondary-action compact" type="button">
+                        <span aria-hidden="true">&#10022;</span>
+                        <span>Generate Summary</span>
+                    </button>
+                    <div id="journal-summary" class="journal-summary">
+                        <strong>AI summary panel</strong>
+                        <p>Reflection insights will highlight emotional tone, key stressors, and supportive next steps.</p>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <section id="resources" class="dashboard-row three-column">
+            <article class="panel rag-panel">
+                <div class="panel-header">
+                    <div>
+                        <span class="eyebrow">RAG knowledge assistant</span>
+                        <h2>Resource Search</h2>
+                    </div>
+                    <span class="status-pill active">FAISS</span>
+                </div>
+                <div class="search-row">
+                    <label class="sr-only" for="rag-query">Wellness question</label>
+                    <input id="rag-query" type="search" placeholder="Ask a mental wellness question...">
+                    <button id="rag-search" class="icon-button" type="button" aria-label="Search">
+                        <span aria-hidden="true">&#128269;</span>
+                    </button>
+                </div>
+                <div id="rag-answer" class="knowledge-answer">
+                    <strong>Knowledge retrieval cards</strong>
+                    <p>Retrieved resources can summarize grounding, sleep, anxiety, stress, and self-care guidance.</p>
+                </div>
+                <div class="mini-list">
+                    <span>CBT prompts</span>
+                    <span>Grounding guides</span>
+                    <span>Sleep hygiene</span>
+                </div>
+            </article>
+
+            <article id="wellness" class="panel wellness-panel">
+                <div class="panel-header">
+                    <div>
+                        <span class="eyebrow">Wellness hub</span>
+                        <h2>Guided Activities</h2>
+                    </div>
+                </div>
+                <div class="wellness-grid">
+                    <button class="wellness-card" type="button">
+                        <span>&#129496;</span>
+                        <strong>Meditation</strong>
+                        <small>4-minute reset</small>
+                    </button>
+                    <button class="wellness-card" type="button">
+                        <span>&#127769;</span>
+                        <strong>Sleep</strong>
+                        <small>Wind-down routine</small>
+                    </button>
+                    <button class="wellness-card" type="button" id="breathing-button">
+                        <span>&#127788;</span>
+                        <strong>Breathing</strong>
+                        <small id="breathing-state">Start rhythm</small>
+                    </button>
+                    <button class="wellness-card" type="button">
+                        <span>&#127793;</span>
+                        <strong>Stress</strong>
+                        <small>Grounding tools</small>
+                    </button>
+                    <button class="wellness-card wide" type="button">
+                        <span>&#10084;</span>
+                        <strong>Self-Care</strong>
+                        <small>Daily supportive action</small>
+                    </button>
+                </div>
+            </article>
+
+            <article class="panel recommendations-panel">
+                <div class="panel-header">
+                    <div>
+                        <span class="eyebrow">Personalized recommendations</span>
+                        <h2>Daily Plan</h2>
+                    </div>
+                    <span class="score-pill">86</span>
+                </div>
+                <div class="score-card">
+                    <strong>Mental wellness score</strong>
+                    <div class="progress-line"><span style="--score: 86%"></span></div>
+                    <p>Progress tracking is stable with a positive self-care streak.</p>
+                </div>
+                <ol class="roadmap">
+                    <li>
+                        <span></span>
+                        <div>
+                            <strong>AI wellness tip</strong>
+                            <small>Start with one controllable task.</small>
+                        </div>
+                    </li>
+                    <li>
+                        <span></span>
+                        <div>
+                            <strong>Daily goal</strong>
+                            <small>Log one mood and one reflection.</small>
+                        </div>
+                    </li>
+                    <li>
+                        <span></span>
+                        <div>
+                            <strong>Progress</strong>
+                            <small>Complete a 2-minute breathing round.</small>
+                        </div>
+                    </li>
+                </ol>
+            </article>
+        </section>
+
+        <section class="dashboard-row three-column">
+            <article class="panel voice-panel">
+                <div class="panel-header">
+                    <div>
+                        <span class="eyebrow">Voice assistant section</span>
+                        <h2>Speech-to-Text</h2>
+                    </div>
+                    <button id="voice-panel-button" class="icon-button" type="button" aria-label="Start voice assistant">
+                        <span aria-hidden="true">&#127908;</span>
+                    </button>
+                </div>
+                <div class="voice-orbit" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <p id="voice-status">Speech-to-text ready. Voice conversation visualization is active.</p>
+            </article>
+
+            <article id="support" class="panel crisis-panel">
+                <div class="panel-header">
+                    <div>
+                        <span class="eyebrow">Crisis support section</span>
+                        <h2>Emergency Support</h2>
+                    </div>
+                    <span class="safety-badge">Safety</span>
+                </div>
+                <p>If someone may be in immediate danger, contact local emergency services now. In the U.S., call or text the 988 Suicide &amp; Crisis Lifeline for urgent mental health support.</p>
+                <div class="support-actions">
+                    <a class="primary-action danger" href="tel:988">
+                        <span aria-hidden="true">&#9742;</span>
+                        <span>Call 988</span>
+                    </a>
+                    <a class="secondary-action compact" href="https://988lifeline.org/" target="_blank" rel="noreferrer">
+                        <span aria-hidden="true">&#128279;</span>
+                        <span>Safety Resources</span>
+                    </a>
+                </div>
+            </article>
+
+            <article class="panel tech-panel">
+                <div class="panel-header">
+                    <div>
+                        <span class="eyebrow">Technology stack</span>
+                        <h2>AI Project Stack</h2>
+                    </div>
+                </div>
+                <div class="tech-grid" aria-label="Technologies">
+                    <span><b>AI</b><small>Assistant</small></span>
+                    <span><b>ML</b><small>Emotion</small></span>
+                    <span><b>NLP</b><small>Language</small></span>
+                    <span><b>BERT</b><small>Classifier</small></span>
+                    <span><b>LLM</b><small>Generation</small></span>
+                    <span><b>RAG</b><small>Retrieval</small></span>
+                    <span><b>LC</b><small>LangChain</small></span>
+                    <span><b>FS</b><small>FAISS</small></span>
+                    <span><b>RX</b><small>React</small></span>
+                    <span><b>API</b><small>FastAPI</small></span>
+                    <span><b>DB</b><small>MongoDB</small></span>
+                </div>
+            </article>
+        </section>
+    </main>
 </div>
 
 <script src="/static/script.js"></script>

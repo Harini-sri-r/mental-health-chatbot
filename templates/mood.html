@@ -3,186 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mood Dashboard | Asha</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        body {
-            margin: 0;
-            min-height: 100vh;
-            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: linear-gradient(180deg, #eef4ff 0%, #f9fcff 60%, #ffffff 100%);
-            color: #102a43;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 28px;
-        }
-
-        .dashboard-shell {
-            width: min(100%, 760px);
-            position: relative;
-        }
-
-        .dashboard-card {
-            background: rgba(255,255,255,0.9);
-            border: 1px solid rgba(148, 163, 184, 0.18);
-            border-radius: 32px;
-            box-shadow: 0 35px 80px rgba(15, 23, 42, 0.12);
-            overflow: hidden;
-        }
-
-        .dashboard-header {
-            padding: 28px 32px 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .dashboard-header h2 {
-            margin: 0;
-            font-size: 28px;
-        }
-
-        .dashboard-header p {
-            margin: 0;
-            color: #475569;
-            line-height: 1.6;
-        }
-
-        .top-bar {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin: 0 32px 22px;
-        }
-
-        .nav-button {
-            border: none;
-            border-radius: 16px;
-            background: #4f7dff;
-            color: white;
-            padding: 12px 18px;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 18px 30px rgba(79, 125, 255, 0.22);
-            transition: transform 0.2s ease, background 0.2s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .nav-button:hover {
-            transform: translateY(-1px);
-            background: #3e67e5;
-        }
-
-        .chart-panel {
-            background: rgba(244, 249, 255, 0.9);
-            padding: 28px 32px 34px;
-            border-top: 1px solid rgba(148, 163, 184, 0.14);
-        }
-
-        .chart-container {
-            width: 100%;
-        }
-
-        canvas {
-            width: 100% !important;
-            height: auto !important;
-        }
-
-        .info-box {
-            margin: 0 32px 24px;
-            padding: 18px 22px;
-            border-radius: 22px;
-            background: #f3f8ff;
-            border: 1px solid rgba(79, 125, 255, 0.14);
-            color: #334e68;
-        }
-
-        @media (max-width: 720px) {
-            .dashboard-card {
-                border-radius: 24px;
-            }
-            .dashboard-header {
-                padding: 22px 20px 16px;
-            }
-            .top-bar {
-                margin: 0 20px 18px;
-            }
-            .chart-panel {
-                padding: 22px 20px 26px;
-            }
-            .info-box {
-                margin: 0 20px 18px;
-            }
-        }
-    </style>
+    <title>Mood Dashboard | MindEase AI</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
+<div class="app-shell">
+    <header class="topbar">
+        <a class="brand-lockup" href="/" aria-label="MindEase AI home">
+            <span class="brand-mark" aria-hidden="true">ME</span>
+            <span>
+                <strong>MindEase AI</strong>
+                <small>Mood analytics dashboard</small>
+            </span>
+        </a>
+        <nav class="topnav" aria-label="Dashboard">
+            <a href="/">Chat</a>
+            <a href="/#insights">Insights</a>
+            <a href="/#journal">Journal</a>
+            <a href="/#support">Support</a>
+        </nav>
+        <a class="nav-action" href="/">
+            <span aria-hidden="true">&#8592;</span>
+            <span>Back to Hub</span>
+        </a>
+    </header>
 
-<div class="dashboard-shell">
-    <div class="dashboard-card">
-        <div class="dashboard-header">
-            <h2>Mood Tracking</h2>
-            <p>See how your recent emotional check-ins are shaping up. A gentle overview of your feelings so you can take a calm next step.</p>
-        </div>
-        <div class="top-bar">
-            <a class="nav-button" href="/">← Back to Chat</a>
-            <button class="nav-button" onclick="location.reload()">🔄 Refresh Data</button>
-        </div>
-        <div class="info-box">
-            This chart reflects your chat mood totals. If your mood is low, try sharing more with Asha for better support.
-        </div>
-        <div class="chart-panel">
-            <div class="chart-container">
-                <canvas id="moodChart"></canvas>
+    <main>
+        <section class="hero-panel panel">
+            <div class="hero-copy">
+                <span class="eyebrow">Mood tracking dashboard</span>
+                <h1>Mood Flow</h1>
+                <p class="hero-subtitle">A focused view of emotional patterns recorded through MindEase AI conversations.</p>
+                <p class="poster-line">Powered by Artificial Intelligence, Machine Learning, NLP, BERT, LLMs, and RAG-Based Knowledge Retrieval</p>
+                <div class="hero-actions">
+                    <button class="primary-action" type="button" onclick="location.reload()">
+                        <span aria-hidden="true">&#8635;</span>
+                        <span>Refresh Data</span>
+                    </button>
+                    <a class="secondary-action" href="/#chat">
+                        <span aria-hidden="true">&#128172;</span>
+                        <span>New Check-In</span>
+                    </a>
+                </div>
             </div>
-        </div>
-    </div>
+            <article class="dashboard-chart-area">
+                <div class="panel-header">
+                    <div>
+                        <span class="eyebrow">Emotion totals</span>
+                        <h2>Chat-Based Mood Counts</h2>
+                    </div>
+                    <span class="status-pill active">Live database</span>
+                </div>
+                <canvas id="dashboard-mood-chart" width="820" height="360" aria-label="Mood count bar chart"></canvas>
+            </article>
+        </section>
+    </main>
 </div>
 
-<script>
-fetch("/mood")
-.then(response => response.json())
-.then(data => {
-    const ctx = document.getElementById("moodChart").getContext("2d");
-    new Chart(ctx, {
-        type: "bar",
-        data: {
-            labels: ["Happy", "Sad", "Angry", "Anxiety", "Neutral"],
-            datasets: [{
-                label: "Mood Count",
-                data: [data.happy || 0, data.sad || 0, data.angry || 0, data.anxiety || 0, data.neutral || 0],
-                backgroundColor: ["#6ee7b7", "#60a5fa", "#f87171", "#fbbf24", "#c4b5fd"],
-                borderRadius: 12,
-                borderSkipped: false
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: { display: false }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: { color: "#334e68", stepSize: 1 },
-                    grid: { color: "rgba(79, 70, 229, 0.1)" }
-                },
-                x: {
-                    ticks: { color: "#334e68", font: { size: 13 } },
-                    grid: { display: false }
-                }
-            }
-        }
-    });
-})
-.catch(error => {
-    console.error("Error loading mood data:", error);
-});
-</script>
-
+<script src="/static/script.js"></script>
 </body>
 </html>
